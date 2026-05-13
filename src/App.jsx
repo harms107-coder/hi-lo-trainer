@@ -775,7 +775,7 @@ function App() {
           </section>
 
           {mode === 'True Count' ? (
-            <section className="true-count-board" aria-label="True count question">
+            <section className="true-count-board" aria-label="True count question" key="true-count-board">
               <div>
                 <span>Running Count</span>
                 <strong>{trueCountQuestion.runningCount}</strong>
@@ -786,7 +786,7 @@ function App() {
               </div>
             </section>
           ) : mode === 'Game Mode' ? (
-            <section className="game-table" aria-label="Blackjack game table">
+            <section className="game-table" aria-label="Blackjack game table" key="game-table">
               <div className="game-hand">
                 <div className="game-hand-header">
                   <span>Dealer</span>
@@ -899,7 +899,7 @@ function App() {
               </div>
             </section>
           ) : (
-            <section className={`card ${currentCard?.suit || ''}`} aria-label="Current card">
+            <section className={`card ${currentCard?.suit || ''}`} aria-label="Current card" key="drill-card">
               <span className="corner top">{cardLabel}</span>
               <strong>{cardLabel}</strong>
               <span className="corner bottom">{cardLabel}</span>

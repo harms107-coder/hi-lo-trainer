@@ -838,7 +838,9 @@ h1 {
 
   .card {
     flex: 0 0 auto;
+    align-self: center;
     width: min(48vw, 154px);
+    height: min(67.2vw, 216px);
     margin: 0 auto 8px;
     border-width: 7px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.24);
