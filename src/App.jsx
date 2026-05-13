@@ -6,6 +6,7 @@ const SUITS = ['spades', 'hearts', 'diamonds', 'clubs']
 const RANKS = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
 const SCORE_STORAGE_KEY = 'countTrainerTopScores'
 const PLAYER_STORAGE_KEY = 'countTrainerPlayerName'
+const COUNT_PICKER_VALUES = [-10, -8, -6, -4, -2, -1, 0, 1, 2, 4, 6, 8, 10]
 
 function createShoe(deckCount) {
   const cards = []
@@ -107,6 +108,42 @@ function formatTime(totalSeconds) {
   const seconds = String(totalSeconds % 60).padStart(2, '0')
 
   return `${minutes}:${seconds}`
+}
+
+function CountPicker({ value, onChange, disabled = false }) {
+  function adjustValue(amount) {
+    const currentValue = value.trim() === '' ? 0 : Number(value)
+    onChange(String(currentValue + amount))
+  }
+
+  return (
+    <div className="count-picker" aria-label="Quick count picker">
+      <div className="count-stepper">
+        <button disabled={disabled} type="button" onClick={() => adjustValue(-1)}>
+          -1
+        </button>
+        <button disabled={disabled} type="button" onClick={() => onChange('')}>
+          Clear
+        </button>
+        <button disabled={disabled} type="button" onClick={() => adjustValue(1)}>
+          +1
+        </button>
+      </div>
+      <div className="count-grid">
+        {COUNT_PICKER_VALUES.map((countValue) => (
+          <button
+            className={String(countValue) === value ? 'selected' : ''}
+            disabled={disabled}
+            key={countValue}
+            type="button"
+            onClick={() => onChange(String(countValue))}
+          >
+            {countValue > 0 ? `+${countValue}` : countValue}
+          </button>
+        ))}
+      </div>
+    </div>
+  )
 }
 
 function getSavedScores() {
@@ -806,7 +843,7 @@ function App() {
 
               <form className="game-count-check" onSubmit={handleGameCountSubmit}>
                 <label htmlFor="game-count">Running count after this hand</label>
-                <div>
+                <div className="game-count-entry">
                   <input
                     disabled={gamePhase !== 'complete' || gameCountChecked}
                     id="game-count"
@@ -819,6 +856,11 @@ function App() {
                     Check Count
                   </button>
                 </div>
+                <CountPicker
+                  disabled={gamePhase !== 'complete' || gameCountChecked}
+                  value={gameCountGuess}
+                  onChange={setGameCountGuess}
+                />
               </form>
 
               <div className="game-record" aria-label="Game record">
@@ -887,7 +929,7 @@ function App() {
               <label htmlFor="running-count">
                 {shoeComplete ? 'Final running count' : runningCheckDue ? 'Random check count' : 'Keep counting until a check'}
               </label>
-              <div>
+              <div className="answer-entry">
                 <input
                   disabled={finalRunningChecked || (!shoeComplete && !runningCheckDue)}
                   id="running-count"
@@ -898,6 +940,11 @@ function App() {
                 />
                 <button disabled={finalRunningChecked || (!shoeComplete && !runningCheckDue)} type="submit">Check</button>
               </div>
+              <CountPicker
+                disabled={finalRunningChecked || (!shoeComplete && !runningCheckDue)}
+                value={guess}
+                onChange={setGuess}
+              />
               <button
                 className="secondary-action"
                 disabled={shoeComplete || runningCheckDue}
@@ -912,7 +959,7 @@ function App() {
           {mode === 'True Count' && (
             <form className="answer-form" onSubmit={handleTrueCountSubmit}>
               <label htmlFor="true-count">True count, rounded toward zero</label>
-              <div>
+              <div className="answer-entry">
                 <input
                   id="true-count"
                   inputMode="numeric"
@@ -922,12 +969,15 @@ function App() {
                 />
                 <button type="submit">Check</button>
               </div>
+              <CountPicker value={guess} onChange={setGuess} />
             </form>
           )}
 
-          <p className="feedback" role="status">
-            {feedback}
-          </p>
+          {mode !== 'Game Mode' && (
+            <p className="feedback" role="status">
+              {feedback}
+            </p>
+          )}
 
           <section className="stats-panel" aria-label="Training stats">
             <div>

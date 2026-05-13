@@ -439,7 +439,7 @@ h1 {
   font-weight: 800;
 }
 
-.game-count-check div {
+.game-count-entry {
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 10px;
@@ -487,6 +487,38 @@ h1 {
   font-size: 1.4rem;
 }
 
+.count-picker {
+  display: grid;
+  gap: 8px;
+}
+
+.count-stepper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.count-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.count-picker button {
+  min-height: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff8db;
+  font-size: 0.9rem;
+  font-weight: 900;
+}
+
+.count-picker button.selected {
+  background: #ffd76a;
+  color: #163324;
+}
+
 @keyframes deal-card {
   from {
     opacity: 0;
@@ -523,7 +555,7 @@ h1 {
   font-weight: 800;
 }
 
-.answer-form div {
+.answer-entry {
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 10px;
@@ -798,10 +830,8 @@ h1 {
   }
 
   .card {
-    flex: 1 1 auto;
-    width: min(46dvh, 58vw, 210px);
-    min-height: 0;
-    max-height: 30dvh;
+    flex: 0 0 auto;
+    width: min(48vw, 154px);
     margin: 0 auto 8px;
     border-width: 7px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.24);
@@ -841,12 +871,11 @@ h1 {
   }
 
   .game-table {
-    flex: 1 1 auto;
+    flex: 0 0 auto;
     min-height: 0;
-    gap: 7px;
+    gap: 6px;
     margin: 0;
-    overflow: auto;
-    padding-bottom: 2px;
+    overflow: visible;
   }
 
   .game-hand {
@@ -893,7 +922,7 @@ h1 {
     font-size: 0.82rem;
   }
 
-  .game-count-check div {
+  .game-count-entry {
     gap: 6px;
   }
 
@@ -904,22 +933,7 @@ h1 {
   }
 
   .game-record {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 6px;
-  }
-
-  .game-record div {
-    min-height: 54px;
-    padding: 8px;
-  }
-
-  .game-record span {
-    font-size: 0.62rem;
-  }
-
-  .game-record strong {
-    margin-top: 3px;
-    font-size: 1rem;
+    display: none;
   }
 
   .answer-grid {
@@ -942,7 +956,7 @@ h1 {
     font-size: 0.86rem;
   }
 
-  .answer-form div {
+  .answer-entry {
     gap: 7px;
   }
 
@@ -964,6 +978,26 @@ h1 {
   .secondary-action {
     min-height: 44px;
     box-shadow: none;
+  }
+
+  .count-picker {
+    gap: 6px;
+  }
+
+  .count-stepper {
+    gap: 6px;
+  }
+
+  .count-grid {
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+  }
+
+  .count-picker button {
+    min-height: 34px;
+    padding: 0 4px;
+    border-radius: 6px;
+    font-size: 0.76rem;
   }
 
   .stats-panel {
