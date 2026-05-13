@@ -1,0 +1,23 @@
+{
+  "name": "Count Trainer",
+  "short_name": "Count Trainer",
+  "description": "A blackjack Hi-Lo counting trainer for card values, running count, true count, and practice hands.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#073b24",
+  "theme_color": "#0f6b3d",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
