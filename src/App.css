@@ -16,6 +16,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  min-height: 100dvh;
 }
 
 button,
@@ -40,6 +41,7 @@ input:disabled {
 
 .app-shell {
   min-height: 100vh;
+  min-height: 100dvh;
   padding: 20px;
   background:
     radial-gradient(circle at top left, rgba(255, 212, 104, 0.18), transparent 34rem),
@@ -693,37 +695,305 @@ h1 {
 }
 
 @media (max-width: 560px) {
+  body {
+    overflow: hidden;
+  }
+
   .app-shell {
-    padding: 16px;
+    height: 100dvh;
+    min-height: 100dvh;
+    overflow: hidden;
+    padding: 10px;
+  }
+
+  .app-layout {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+
+  .trainer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
   }
 
   .app-header {
-    align-items: flex-start;
+    align-items: center;
+    flex: 0 0 auto;
+    gap: 10px;
+    margin-bottom: 8px;
   }
 
   .header-actions {
-    flex-direction: column;
+    flex: 0 0 auto;
+    gap: 6px;
+  }
+
+  .eyebrow {
+    margin-bottom: 2px;
+    font-size: 0.64rem;
   }
 
   h1 {
-    font-size: 2rem;
+    font-size: 1.45rem;
   }
 
-  .mode-tabs,
-  .stats-panel {
-    grid-template-columns: 1fr;
+  .reset-button,
+  .help-button {
+    min-height: 36px;
+    padding: 0 10px;
+    font-size: 0.82rem;
+    box-shadow: none;
+  }
+
+  .help-panel {
+    max-height: 62dvh;
+    margin-bottom: 8px;
+    overflow: auto;
+    padding: 10px;
+  }
+
+  .mode-tabs {
+    flex: 0 0 auto;
+    grid-template-columns: repeat(4, minmax(70px, 1fr));
+    gap: 5px;
+    margin-bottom: 7px;
+    overflow-x: auto;
+    padding: 4px;
+  }
+
+  .mode-tabs button,
+  .deck-options button {
+    min-height: 34px;
+    padding: 0 8px;
+    font-size: 0.72rem;
+    white-space: nowrap;
   }
 
   .deck-options {
-    grid-template-columns: repeat(2, 1fr);
+    flex: 0 0 auto;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+    margin: 0 0 8px;
+  }
+
+  .player-panel {
+    order: 8;
+    flex: 0 0 auto;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    margin: 8px 0 0;
+    padding: 8px;
+  }
+
+  .player-panel label {
+    font-size: 0.68rem;
+  }
+
+  .player-panel input {
+    min-height: 36px;
+    font-size: 0.9rem;
+  }
+
+  .card {
+    flex: 1 1 auto;
+    width: min(46dvh, 58vw, 210px);
+    min-height: 0;
+    max-height: 30dvh;
+    margin: 0 auto 8px;
+    border-width: 7px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.24);
+  }
+
+  .card strong {
+    font-size: clamp(3rem, 15vw, 4.4rem);
+  }
+
+  .corner {
+    font-size: 1rem;
+  }
+
+  .corner.top {
+    top: 9px;
+    left: 9px;
+  }
+
+  .corner.bottom {
+    right: 9px;
+    bottom: 9px;
+  }
+
+  .true-count-board {
+    flex: 0 0 auto;
+    gap: 7px;
+    margin: 0 0 8px;
+  }
+
+  .true-count-board div {
+    min-height: 70px;
+    padding: 10px;
+  }
+
+  .true-count-board strong {
+    font-size: 2rem;
+  }
+
+  .game-table {
+    flex: 1 1 auto;
+    min-height: 0;
+    gap: 7px;
+    margin: 0;
+    overflow: auto;
+    padding-bottom: 2px;
+  }
+
+  .game-hand {
+    gap: 7px;
+    padding: 9px;
+  }
+
+  .game-hand-header strong {
+    font-size: 1.15rem;
+  }
+
+  .mini-card-row {
+    gap: 6px;
+    min-height: 54px;
+  }
+
+  .mini-card {
+    width: 38px;
+    border-width: 2px;
+    font-size: 0.82rem;
+  }
+
+  .game-message {
+    min-height: 38px;
+    padding: 9px 10px;
+    font-size: 0.88rem;
+  }
+
+  .game-actions {
+    gap: 6px;
+  }
+
+  .game-actions button {
+    min-height: 44px;
+    font-size: 0.9rem;
+    box-shadow: none;
+  }
+
+  .game-count-check {
+    gap: 6px;
+  }
+
+  .game-count-check label {
+    font-size: 0.82rem;
+  }
+
+  .game-count-check div {
+    gap: 6px;
+  }
+
+  .game-count-check input,
+  .game-count-check button {
+    min-height: 40px;
+    font-size: 0.9rem;
+  }
+
+  .game-record {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+
+  .game-record div {
+    min-height: 54px;
+    padding: 8px;
+  }
+
+  .game-record span {
+    font-size: 0.62rem;
+  }
+
+  .game-record strong {
+    margin-top: 3px;
+    font-size: 1rem;
+  }
+
+  .answer-grid {
+    flex: 0 0 auto;
+    gap: 7px;
+  }
+
+  .answer-grid button {
+    min-height: 56px;
+    font-size: 1.35rem;
+    box-shadow: none;
+  }
+
+  .answer-form {
+    flex: 0 0 auto;
+    gap: 7px;
+  }
+
+  .answer-form label {
+    font-size: 0.86rem;
+  }
+
+  .answer-form div {
+    gap: 7px;
+  }
+
+  .answer-form input,
+  .answer-form button {
+    min-height: 44px;
+    font-size: 1rem;
+  }
+
+  .toggle-row {
+    min-height: 40px;
+    padding: 7px 9px;
+  }
+
+  .toggle-row span {
+    font-size: 0.86rem;
+  }
+
+  .secondary-action {
+    min-height: 44px;
+    box-shadow: none;
   }
 
   .stats-panel {
     grid-template-columns: repeat(2, 1fr);
+    flex: 0 0 auto;
+    gap: 6px;
   }
 
-  .stats-panel div:last-child {
-    grid-column: auto;
+  .stats-panel div {
+    min-height: 52px;
+    padding: 8px;
+  }
+
+  .stats-panel span {
+    margin-bottom: 3px;
+    font-size: 0.62rem;
+  }
+
+  .stats-panel strong {
+    font-size: 1rem;
+  }
+
+  .feedback {
+    flex: 0 0 auto;
+    min-height: 54px;
+    max-height: 54px;
+    margin: 8px 0;
+    overflow: auto;
+    padding: 9px 10px;
+    font-size: 0.9rem;
   }
 
   .scoreboard-header {
@@ -741,6 +1011,10 @@ h1 {
     grid-template-columns: auto auto;
     justify-content: space-between;
     text-align: left;
+  }
+
+  .scoreboard {
+    display: none;
   }
 }
 
