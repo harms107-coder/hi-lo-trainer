@@ -506,6 +506,7 @@ h1 {
 
 .count-picker button {
   min-height: 38px;
+  padding: 0 6px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.1);
@@ -517,6 +518,12 @@ h1 {
 .count-picker button.selected {
   background: #ffd76a;
   color: #163324;
+}
+
+.count-grid .zero {
+  grid-column: 7;
+  grid-row: 1 / span 2;
+  font-size: 1.4rem;
 }
 
 @keyframes deal-card {
@@ -994,10 +1001,14 @@ h1 {
   }
 
   .count-picker button {
-    min-height: 34px;
+    min-height: 32px;
     padding: 0 4px;
     border-radius: 6px;
     font-size: 0.76rem;
+  }
+
+  .count-grid .zero {
+    font-size: 1.2rem;
   }
 
   .stats-panel {

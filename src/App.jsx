@@ -6,7 +6,7 @@ const SUITS = ['spades', 'hearts', 'diamonds', 'clubs']
 const RANKS = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
 const SCORE_STORAGE_KEY = 'countTrainerTopScores'
 const PLAYER_STORAGE_KEY = 'countTrainerPlayerName'
-const COUNT_PICKER_VALUES = [-10, -8, -6, -4, -2, -1, 0, 1, 2, 4, 6, 8, 10]
+const COUNT_PICKER_VALUES = [2, 3, 4, 5, 6, 7, -2, -3, -4, -5, -6, -7]
 
 function createShoe(deckCount) {
   const cards = []
@@ -130,6 +130,14 @@ function CountPicker({ value, onChange, disabled = false }) {
         </button>
       </div>
       <div className="count-grid">
+        <button
+          className={value === '0' ? 'zero selected' : 'zero'}
+          disabled={disabled}
+          type="button"
+          onClick={() => onChange('0')}
+        >
+          0
+        </button>
         {COUNT_PICKER_VALUES.map((countValue) => (
           <button
             className={String(countValue) === value ? 'selected' : ''}
